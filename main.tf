@@ -8,7 +8,7 @@ resource "grafana_folder" "create_folder_on_grafana" {
 }
 
 resource "grafana_dashboard" "deploy_dashboard" {
-  for_each    = fileset("${var.dashboard_file_path}", "**")
+  for_each    = fileset("${var.dashboard_file_path}", "*.json")
   config_json = file("${var.dashboard_file_path}/${each.key}")
   folder      = grafana_folder.create_folder_on_grafana.id
 }
