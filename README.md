@@ -1,2 +1,2 @@
-# Grafana-Dashboard-Deploy-Exp2-with-Variables
+# Grafana-Dashboard-Deploy-Exp3-with-Variables
 Test Grafana Dashboard Deployment using Terraform with Variables
