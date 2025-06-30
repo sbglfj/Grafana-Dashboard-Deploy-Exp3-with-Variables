@@ -1,7 +1,7 @@
 variable "grafana_dashboard_folder_name" {
   description = "Folder name created on grafana instance"
   type        = string
-  default     = "test-dashboard-folder-via-var"
+  default     = "aa-stage"
 }
 
 variable "dashboard_file_path" {
