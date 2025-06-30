@@ -1,15 +1,14 @@
-terraform {
-   required_providers {
-      grafana = {
-         source  = "grafana/grafana"
-         version = ">= 2.9.0"
-      }
-   }
+provider "grafana" {
+  url  = var.grafana_endpoint
+  auth = var.grafana_service_account_api_key
 }
 
-provider "grafana" {
-   alias = "cloud"
+resource "grafana_folder" "create_folder_on_grafana" {
+  title = var.grafana_dashboard_folder_name
+}
 
-   url   = "https://sbglfj.grafana.net"
-   auth = var.grafana_auth
+resource "grafana_dashboard" "deploy_dashboard" {
+  for_each    = fileset("${var.dashboard_file_path}", "**")
+  config_json = file("${var.dashboard_file_path}/${each.key}")
+  folder      = grafana_folder.create_folder_on_grafana.id
 }
